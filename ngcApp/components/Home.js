@@ -17,12 +17,13 @@ const style = {
   textStyle: {
     color: 'black',
     fontWeight: 'bold',
-    width: 300,
+    width: 200,
     marginRight: 30,
   },
   listviewStyle: {
     marginBottom: 15,
     marginRight: 15,
+    marginLeft: 15
   },
   viewStyle: {
         paddingTop: 15,
@@ -30,8 +31,8 @@ const style = {
   imgStyle: {
     justifyContent: 'center',
     alignContent: 'flex-start',
-    width: 300,
-    height: 300,
+    width: 150,
+    height: 150,
     marginTop: 30,
   },
 };
@@ -64,19 +65,19 @@ handleActivity(data) {
 
           <Text style={style.titleStyle} >Sports</Text>
           <ListView style={style.listviewStyle} showsHorizontalScrollIndicator={false} horizontal={true} dataSource={this.state.sports}
-          renderRow={(objData) => <TouchableHighlight onPress={() => this.props.navigation.navigate('CoolStuff')} >
+          renderRow={(objData) => <TouchableHighlight onPress={() => {this.handleActivity(objData)}} >
           <Text style={style.textStyle}>{objData.title + "\n"}<Image style={style.imgStyle} source={{uri: objData.grid4ImageUrl }}>
           </Image></Text></TouchableHighlight>}></ListView>
 
           <Text style={style.titleStyle} >Entertainment</Text>
           <ListView style={style.listviewStyle} showsHorizontalScrollIndicator={false} horizontal={true} dataSource={this.state.entertainment}
-          renderRow={(objData) => <TouchableHighlight onPress={() => this.props.navigation.navigate('CoolStuff')} >
+          renderRow={(objData) => <TouchableHighlight onPress={() => {this.handleActivity(objData)}} >
           <Text style={style.textStyle}>{objData.title + "\n"}<Image style={style.imgStyle} source={{uri: objData.grid4ImageUrl }}>
           </Image></Text></TouchableHighlight>}></ListView>
 
           <Text style={style.titleStyle} >Things To Do</Text>
           <ListView style={style.listviewStyle} showsHorizontalScrollIndicator={false} horizontal={true} dataSource={this.state.todo}
-          renderRow={(objData) => <TouchableHighlight onPress={() => this.props.navigation.navigate('CoolStuff')} >
+          renderRow={(objData) => <TouchableHighlight onPress={() => {this.handleActivity(objData)}} >
           <Text style={style.textStyle}>{objData.title + "\n"}<Image style={style.imgStyle} source={{uri: objData.grid4ImageUrl }}>
           </Image></Text></TouchableHighlight>}></ListView>
         </ScrollView>

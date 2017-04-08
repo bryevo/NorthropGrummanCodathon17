@@ -28,7 +28,7 @@ export default class ProfileScreen extends React.Component {
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       dataSource: ds.cloneWithRows([
-        'About me', 'Interests', 'Contact Info', 'Settings'
+        'Things', 'Food', 'Entertainment', 'Beauty', 'Travel', 'Electronics'
       ])
     };
   }
