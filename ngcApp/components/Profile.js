@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, ListView } from 'react-native';
+import * as firebase from 'firebase';
 
 const styles = {
     viewStyle: {
@@ -31,6 +32,16 @@ export default class ProfileScreen extends React.Component {
         'Things', 'Food', 'Entertainment', 'Beauty', 'Travel', 'Electronics'
       ])
     };
+  }  
+  componentDidMount() {
+            /* reference to our database*/
+            const rootRef = firebase.database().ref();
+            /* assigns the a reference to one of the children(branch) of the database*/
+                rootRef.on('value', snap => {
+                this.setState({
+                    info: snap.child('Data').val(),
+                });
+            });
   }
     render() {
         const { viewStyle, textStyle } = styles;
@@ -38,6 +49,7 @@ export default class ProfileScreen extends React.Component {
             <View style={viewStyle} >
            <ListView horizontal={true} dataSource={this.state.dataSource}
            renderRow={(rowData) => <Text style={textStyle}>{rowData}</Text>} />
+           <Text>{this.state.info}</Text>
             </View>
         );
     }
