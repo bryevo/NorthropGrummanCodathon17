@@ -21,15 +21,15 @@ export default class UserInterests extends React.Component {
         super();
         this.state = {
             interests: ['Things', 'Food', 'Entertainment', 'Beauty', 'Travel', 'Electronics'],
-            interestClicked: []
+            interestClicked: ''
         };
     const rootref = firebase.database().ref();
         // const firebasedb = new firebase('https://ngc-app-2017.firebaseio.com/');
     }
     interestClicked(interest) {
         console.log(interest);
-        const array = this.state.interests.push(interest);
-        this.setState({ interestClicked: array });
+        oldStr = this.state.interestClicked;
+        this.setState({ interestClicked: oldStr + ', ' + interest});
     }
 
 
@@ -39,9 +39,9 @@ export default class UserInterests extends React.Component {
         username: name,
         email: email,
         password: password,
-        interest: [interestobj]
+        interest: interestobj
     });
-    }   
+    }
 
     exportInterest() {
         const fullInfo = this.props.navigation.state.params.profInfo;
