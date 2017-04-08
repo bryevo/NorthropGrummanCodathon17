@@ -18,7 +18,7 @@ export default class Register extends React.Component {
             } catch(error){
               this.setState({error:error.message});
             }
-
+    this.props.navigation.navigate('Dashboard');   
     }
 
     render() {

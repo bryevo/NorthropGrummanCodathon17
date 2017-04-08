@@ -15,11 +15,13 @@ export default class Register extends React.Component {
         }
     }
     onRegisterPressed() {
-           try{ const promise = firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
-           } catch(e) {
+           try { 
+            const promise = firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
+            console.log(promise);
+            } catch(e) {
                 this.setState({error:e.message});
-           }
-        this.props.navigation.navigate('Register');
+           } 
+            this.props.navigation.navigate('Interests');          
     }
 
     render() {
