@@ -1,41 +1,99 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text } from 'react-native';
+import { View, ListView, Text, TouchableHighlight, Image, ScrollView } from 'react-native';
+import gpnFood from '../groupon_food.json';
+import gpnEnt from '../groupon_music.json';
+import gpnSports from '../groupon_sports.json';
+import gpnTodo from '../groupon_todo.json';
+import gpnBeauty from '../groupon_beauty.json';
+
 // import ListViewer from './ListView.js';
 
 const style = {
-  textStyle: {
-    display: 'flex',
-    paddingRight: 15,
-    color: 'black',
-    marginLeft: 15
+  titleStyle: {
+    fontSize: 26,
+    marginBottom: 15,
+    textAlign: 'center'
   },
-  listStyle: {
-    backgroundColor: 'lightblue',
-    flex: 1,
+  textStyle: {
+    color: 'black',
+    fontWeight: 'bold',
+    width: 300,
+    marginRight: 30,
+  },
+  listviewStyle: {
+    marginBottom: 15,
+    marginRight: 15,
   },
   viewStyle: {
         paddingTop: 15,
     },
+  imgStyle: {
+    justifyContent: 'center',
+    alignContent: 'flex-start',
+    width: 300,
+    height: 300,
+    marginTop: 30,
+  },
 };
 
-class ScrollHandle extends Component {
+class GrouponComponent extends Component {
   constructor() {
   super();
+  const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
   this.state = {
-    sports: ['basketball', 'golf', 'tennis'],
+    food: ds.cloneWithRows(gpnFood.deals),
+    entertainment: ds.cloneWithRows(gpnEnt.deals),
+    sports: ds.cloneWithRows(gpnSports.deals),
+    todo: ds.cloneWithRows(gpnTodo.deals),
+    beauty: ds.cloneWithRows(gpnBeauty.deals)
   };
-  }
+}
+handleActivity(data) {
+  console.log(data);
+  this.props.state = data;
+  this.props.navigation.navigate('Activity', { ourSHIT: data });
+}
   render() {
-    const value = this.state.sports;
+    return (
+      <ScrollView>
+          <Text style={style.titleStyle} >Food</Text>
+          <ListView style={style.listviewStyle} showsHorizontalScrollIndicator={false} horizontal={true} dataSource={this.state.food}
+          renderRow={(objData) => <TouchableHighlight onPress={() => {this.handleActivity(objData)}} >
+          <Text style={style.textStyle}>{objData.title + "\n"}<Image style={style.imgStyle} source={{uri: objData.grid4ImageUrl }}>
+          </Image></Text></TouchableHighlight>}></ListView>
+
+          <Text style={style.titleStyle} >Sports</Text>
+          <ListView style={style.listviewStyle} showsHorizontalScrollIndicator={false} horizontal={true} dataSource={this.state.sports}
+          renderRow={(objData) => <TouchableHighlight onPress={() => this.props.navigation.navigate('CoolStuff')} >
+          <Text style={style.textStyle}>{objData.title + "\n"}<Image style={style.imgStyle} source={{uri: objData.grid4ImageUrl }}>
+          </Image></Text></TouchableHighlight>}></ListView>
+
+          <Text style={style.titleStyle} >Entertainment</Text>
+          <ListView style={style.listviewStyle} showsHorizontalScrollIndicator={false} horizontal={true} dataSource={this.state.entertainment}
+          renderRow={(objData) => <TouchableHighlight onPress={() => this.props.navigation.navigate('CoolStuff')} >
+          <Text style={style.textStyle}>{objData.title + "\n"}<Image style={style.imgStyle} source={{uri: objData.grid4ImageUrl }}>
+          </Image></Text></TouchableHighlight>}></ListView>
+
+          <Text style={style.titleStyle} >Things To Do</Text>
+          <ListView style={style.listviewStyle} showsHorizontalScrollIndicator={false} horizontal={true} dataSource={this.state.todo}
+          renderRow={(objData) => <TouchableHighlight onPress={() => this.props.navigation.navigate('CoolStuff')} >
+          <Text style={style.textStyle}>{objData.title + "\n"}<Image style={style.imgStyle} source={{uri: objData.grid4ImageUrl }}>
+          </Image></Text></TouchableHighlight>}></ListView>
+        </ScrollView>
+    );
+  }
+}
+
+class ScrollHandle extends Component {
+  render() {
       return (
-   <ScrollView horizontal="true">
-          <Text style={style.textStyle}>{value[0]}</Text>
-          <Text style={style.textStyle}>{value[1]}</Text>
-          <Text style={style.textStyle}>{value[2]}</Text>
-      </ScrollView>
+        <View>
+          <GrouponComponent navigation={this.props.navigation} />  
+        </View>
       );
   }
 }
+
 export default class HomeScreen extends Component {
   static navigationOptions = { 
     header: {
@@ -49,11 +107,9 @@ export default class HomeScreen extends Component {
     }
   };
   render() {  
-    // console.log(this.props);
-    // const { navigate } = this.props.navigation;
     return (
-      <View>
-        <ScrollHandle />
+      <View style={style.viewStyle}>
+        <ScrollHandle navigation={this.props.navigation} />
       </View>
     );
   }

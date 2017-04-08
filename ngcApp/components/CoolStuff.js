@@ -25,7 +25,7 @@ export default class CoolStuff extends Component {
     /* assigns the a reference to one of the children(branch) of the database*/
         rootRef.on('value', snap => {
         this.setState({
-            percentage: snap.child('Parking Lot 12').val(),
+            percentage: snap.child('Data').val(),
         });
     });
   }
@@ -33,7 +33,7 @@ export default class CoolStuff extends Component {
         console.log(this.props);
         return (
             <View>
-                <Text >{this.state.percentage} % full</Text>
+                <Text >{this.state.obj}</Text>
             </View>
         );
     }
