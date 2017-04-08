@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableHighlight, StyleSheet } from 'react-native';
 import firebase from 'firebase';
-
+// var Firebase = require('firebase');
 export default class Register extends React.Component {
     constructor() {
         super();
@@ -13,15 +13,29 @@ export default class Register extends React.Component {
             password_contirmation:"",
             errors:'',
         }
+    const rootref = firebase.database().ref();
+        // const firebasedb = new firebase('https://ngc-app-2017.firebaseio.com/');
+
     }
+
+    writeUserData(email, password, name) {
+    // const childref = rootref.child.ref
+    firebase.database().ref().child(name).set({
+        username: name,
+        email: email,
+        password : password
+    });
+    }   
     onRegisterPressed() {
-           try { 
+        try{
+            this.writeUserData(this.state.email, this.state.password, this.state.name);
+            console.log("WRITING DAT:" + promise);
             const promise = firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
-            console.log(promise);
-            } catch(e) {
-                this.setState({error:e.message});
-           } 
-            this.props.navigation.navigate('Interests');          
+            this.props.navigation.navigate('Interests');  
+        }catch(e){
+
+        }
+            
     }
 
     render() {
