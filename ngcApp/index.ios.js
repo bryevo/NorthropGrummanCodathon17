@@ -5,10 +5,12 @@ import CoolStuff from './components/CoolStuff.js';
 import ProfileScreen from './components/Profile.js';
 import HomeScreen from './components/Home.js';
 import InterestScreen from './components/Interests';
-// import ListView from './components/ListView';
+import Register from './components/Register.js';
+import Root from './components/Root';
+import Login from './components/Login.js';
+import React from 'react';
+import { View, Text, Navigator } from 'react-native';
 
-// import meetup from 'meetup-api';
-// Initialize Firebase
   var config = {
     apiKey: "AIzaSyC_na5VWr1z6yYvttDGTZrv3QOaa4Rxd3g",
     authDomain: "ngc-app-2017.firebaseapp.com",
@@ -18,6 +20,10 @@ import InterestScreen from './components/Interests';
     messagingSenderId: "817986584522"
   };
   firebase.initializeApp(config);
+// import ListView from './components/ListView';
+
+// import meetup from 'meetup-api';
+
 
 //   var meetup = require('./node_modules/meetup-api/lib/meetup')({
 // 	key: '314c421c286c3e7a5f1f262135425d6f'
@@ -31,9 +37,17 @@ const InterestTab = TabNavigator({
   Home: { screen: InterestScreen },
   Profile: { screen: ProfileScreen },
 });
+// const ngcApp = StackNavigator({
+//     Home: { screen: InterestTab },
+//     CoolStuff: { screen: CoolStuff },
+// });
+
 const ngcApp = StackNavigator({
-    Home: { screen: InterestTab },
-    CoolStuff: { screen: CoolStuff },
+  Home: {screen: Root},
+  Register: {screen: Register},
+  Login: {screen: Login},
+
 });
+
 
 AppRegistry.registerComponent('ngcApp', () => ngcApp);
