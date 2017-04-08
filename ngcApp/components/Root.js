@@ -16,7 +16,7 @@ moveLogin(){
         <Image source={require('../assets/bg_splash.png')} style = {styles.backgroundImage}>
       <View style={styles.container}>
       
-        <Text style={styles.title}>Welcome Friend </Text>
+        <Text style={styles.title}>San Diego Activities </Text>
         <TouchableHighlight navigate = {this.props.navigation} onPress={() => this.moveRegister()}  style={styles.button}>
           <Text style={styles.buttonText}>Register</Text>
         </TouchableHighlight>
@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     alignItems: 'center',
     marginTop: 10,
-    justifyContent: 'center'
+    justifyContent: 'center',
+
   },
   backgroundImage: {
       flex: 1,
@@ -60,10 +61,15 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   title: {
-    fontSize: 50,
+    fontSize: 70,
     marginBottom: 50,
     color: '#FFF',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    textShadowColor: '#000',
+    textShadowRadius: 4,
+    textShadowOffset: { width: 3, height: 4 },
+    textAlign: 'center'
+
   }
 });
 

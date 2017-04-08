@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableHighlight, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableHighlight, StyleSheet, Image } from 'react-native';
 import firebase from 'firebase';
 // var Firebase = require('firebase');
 export default class Register extends React.Component {
@@ -26,7 +26,8 @@ export default class Register extends React.Component {
 
     render() {
         return (
-            <View>
+            <Image source={require('../assets/bg_ng.jpg')} style = {styles.background}>
+            <View style={styles.viewStyle}>
                 <TextInput
                     onChangeText={(val)=> this.setState({name:val})}
                     style={styles.input} 
@@ -55,25 +56,39 @@ export default class Register extends React.Component {
                     </Text>
                 </TouchableHighlight>
 
-                <Text style = {styles.errorMessage}>
+                <Text style={styles.errorMessage}>
                     
                 </Text>
             </View>
+            </Image>
         );
     }
 }
 
-const styles = StyleSheet.create({
+const styles = {
     input: {
+        backgroundColor: 'transparent',
         height: 50,
-        marginTop: 20,
-        padding: 5,
-        fontSize: 18,
-        borderWidth: 2,
-        borderColor: '#48bbec',
-        justifyContent: 'center'
-
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        padding: 10,
+        fontSize: 20,
+        textColor: '#fff',
+        placeholderTextColor: '#fff',
+        borderWidth: 1,
+        borderColor: '#fff',
+        justifyContent: 'center',
+        color: '#fff',
+        textAlign: 'left'
     },
+    background: {
+      flex: 1,
+        width: null,
+        height: null,
+        resizeMode: 'cover'
+      //Image.resizeMode.contain
+  },
     errorMessage: {
         color: 'red'
     },
@@ -91,5 +106,7 @@ const styles = StyleSheet.create({
     },
     heading: {
         fontSize: 30,
-    }
-})
+    },
+
+};
+

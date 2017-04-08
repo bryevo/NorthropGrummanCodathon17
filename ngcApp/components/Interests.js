@@ -56,7 +56,7 @@ export default class UserInterests extends React.Component {
         console.log('This is this.props.navigation');
         console.log(this.props.navigation);
         return (
-            <View navigation={this.props.navigation} >
+            <View style={style.viewStyle} navigation={this.props.navigation} >
                 <Text> What are you looking to do?</Text>
                 <InterestBox label={this.state.interests[0]} interest={this.state.interests[0]} exportFunction={(data) => this.interestClicked(data)} />
                 <InterestBox label={this.state.interests[1]}interest={this.state.interests[1]} exportFunction={(data) => this.interestClicked(data)} />
@@ -69,3 +69,9 @@ export default class UserInterests extends React.Component {
         );
     }
 }
+const style = {
+    viewStyle: {
+        backgroundColor: 'black',
+    }
+};
+

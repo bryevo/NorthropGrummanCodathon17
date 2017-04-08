@@ -10,12 +10,14 @@ import gpnBeauty from '../groupon_beauty.json';
 
 const style = {
   titleStyle: {
+    color: 'white',
     fontSize: 26,
     marginBottom: 15,
-    textAlign: 'center'
+    textAlign: 'center',
+    padding: 10
   },
   textStyle: {
-    color: 'black',
+    color: 'white',
     fontWeight: 'bold',
     width: 200,
     marginRight: 30,
@@ -27,6 +29,7 @@ const style = {
   },
   viewStyle: {
         paddingTop: 15,
+        backgroundColor: '#122f5e',
     },
   imgStyle: {
     justifyContent: 'center',
@@ -35,6 +38,9 @@ const style = {
     height: 150,
     marginTop: 30,
   },
+  viewScroll: {
+    backgroundColor: '#2C3539',
+  }
 };
 
 class GrouponComponent extends Component {
@@ -57,29 +63,38 @@ handleActivity(data) {
   render() {
     return (
       <ScrollView>
-          <Text style={style.titleStyle} >Food</Text>
-          <ListView style={style.listviewStyle} showsHorizontalScrollIndicator={false} horizontal={true} dataSource={this.state.food}
-          renderRow={(objData) => <TouchableHighlight onPress={() => {this.handleActivity(objData)}} >
-          <Text style={style.textStyle}>{objData.title + "\n"}<Image style={style.imgStyle} source={{uri: objData.grid4ImageUrl }}>
-          </Image></Text></TouchableHighlight>}></ListView>
-
-          <Text style={style.titleStyle} >Sports</Text>
-          <ListView style={style.listviewStyle} showsHorizontalScrollIndicator={false} horizontal={true} dataSource={this.state.sports}
-          renderRow={(objData) => <TouchableHighlight onPress={() => {this.handleActivity(objData)}} >
-          <Text style={style.textStyle}>{objData.title + "\n"}<Image style={style.imgStyle} source={{uri: objData.grid4ImageUrl }}>
-          </Image></Text></TouchableHighlight>}></ListView>
-
-          <Text style={style.titleStyle} >Entertainment</Text>
-          <ListView style={style.listviewStyle} showsHorizontalScrollIndicator={false} horizontal={true} dataSource={this.state.entertainment}
-          renderRow={(objData) => <TouchableHighlight onPress={() => {this.handleActivity(objData)}} >
-          <Text style={style.textStyle}>{objData.title + "\n"}<Image style={style.imgStyle} source={{uri: objData.grid4ImageUrl }}>
-          </Image></Text></TouchableHighlight>}></ListView>
 
           <Text style={style.titleStyle} >Things To Do</Text>
+          <View style={style.viewScroll} >
           <ListView style={style.listviewStyle} showsHorizontalScrollIndicator={false} horizontal={true} dataSource={this.state.todo}
           renderRow={(objData) => <TouchableHighlight onPress={() => {this.handleActivity(objData)}} >
           <Text style={style.textStyle}>{objData.title + "\n"}<Image style={style.imgStyle} source={{uri: objData.grid4ImageUrl }}>
-          </Image></Text></TouchableHighlight>}></ListView>
+          </Image></Text></TouchableHighlight>}></ListView></View>
+          
+          <Text style={style.titleStyle} >Entertainment</Text>
+          <View style={style.viewScroll} >
+          <ListView style={style.listviewStyle} showsHorizontalScrollIndicator={false} horizontal={true} dataSource={this.state.entertainment}
+          renderRow={(objData) => <TouchableHighlight onPress={() => {this.handleActivity(objData)}} >
+          <Text style={style.textStyle}>{objData.title + "\n"}<Image style={style.imgStyle} source={{uri: objData.grid4ImageUrl }}>
+          </Image></Text></TouchableHighlight>}></ListView></View>
+
+          <Text style={style.titleStyle} >Food</Text>
+          <View style={style.viewScroll} >
+          <ListView style={style.listviewStyle} showsHorizontalScrollIndicator={false} horizontal={true} dataSource={this.state.food}
+          renderRow={(objData) => <TouchableHighlight onPress={() => {this.handleActivity(objData)}} >
+          <Text style={style.textStyle}>{objData.title + "\n"}<Image style={style.imgStyle} source={{uri: objData.grid4ImageUrl }}>
+          </Image></Text></TouchableHighlight>}></ListView></View>
+
+          <Text style={style.titleStyle} >Sports</Text>
+          <View style={style.viewScroll} >
+          <ListView style={style.listviewStyle} showsHorizontalScrollIndicator={false} horizontal={true} dataSource={this.state.sports}
+          renderRow={(objData) => <TouchableHighlight onPress={() => {this.handleActivity(objData)}} >
+          <Text style={style.textStyle}>{objData.title + "\n"}<Image style={style.imgStyle} source={{uri: objData.grid4ImageUrl }}>
+          </Image></Text></TouchableHighlight>}></ListView></View>
+
+          
+
+          
         </ScrollView>
     );
   }

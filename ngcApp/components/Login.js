@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableHighlight, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableHighlight, StyleSheet, Image } from 'react-native';
 import firebase from 'firebase';
 
 export default class Register extends React.Component {
@@ -23,52 +23,91 @@ export default class Register extends React.Component {
 
     render() {
         return (
-            <View>
+            <Image source={require('../assets/bg_firewords.jpg')} style = {style.background}>
+            <View >
+            <Text style = {style.loginText}>
+            Great to see you!
+            </Text>
                 <TextInput
                     onChangeText={(val)=> this.setState({email:val})}
-                    style={styles.input} 
+                    style={style.input} 
                     placeholder = "Email"
+                    placeholderTextColor = "white"
                 />
                 <TextInput
                     onChangeText={(val)=> this.setState({password:val})}
-                    style={styles.input} 
+                    style={style.input} 
                     placeholder = "Password"
-                    secureTextEntry = {true}
+                    placeholderTextColor = "white"
+                    secureTextEntry = 'true'
                 />
-                <TouchableHighlight style = {styles.button} onPress={this.onRegisterPressed.bind(this)}>
-                    <Text style = {styles.buttonText}>
+                <TouchableHighlight style = {style.button} onPress={this.onRegisterPressed.bind(this)}>
+                    <Text style = {style.buttonText}>
                         Login
                     </Text>
                 </TouchableHighlight>
 
-                <Text style = {styles.errorMessage}>
+                <Text style = {style.errorMessage}>
                     {this.state.errors}
                 </Text>
             </View>
+            </Image>
         );
     }
 }
 
-const styles = StyleSheet.create({
+const style = {
+    viewStyle: {
+        backgroundColor: '#122f5e'
+    },
+    loginText: {
+        fontSize: 50,
+        backgroundColor: 'transparent',
+        marginTop: 100,
+        marginBottom: 30,
+        color: '#fff',
+        textAlign: 'center',
+        textShadowColor: '#000',
+        textShadowRadius: 4,
+        textShadowOffset: { width: 3, height: 4 },
+    },
     input: {
+        backgroundColor: 'transparent',
         height: 50,
-        marginTop: 20,
-        padding: 5,
-        fontSize: 18,
-        borderWidth: 2,
-        borderColor: '#48bbec',
-        justifyContent: 'center'
+        marginTop: 10,
+        marginLeft: 10,
+        marginRight: 10,
+        padding: 10,
+        fontSize: 20,
+        textColor: '#fff',
+        placeholderTextColor: '#fff',
+        borderWidth: 1,
+        borderColor: '#fff',
+        justifyContent: 'center',
+        color: '#fff',
+        textAlign: 'left'
 
     },
+    background: {
+      flex: 1,
+        width: null,
+        height: null,
+        resizeMode: 'cover'
+      //Image.resizeMode.contain
+  },
     errorMessage: {
         color: 'red'
     },
     button: {
         height: 50,
-        backgroundColor: '#48bbec',
+        backgroundColor: '#88d688',
         alignSelf: 'stretch',
-        marginTop:10,
-        justifyContent: 'center'
+        marginTop:100,
+        marginBottom: 500,
+        justifyContent: 'center',
+        marginLeft: 10,
+        marginRight: 10,
+ 
     },
     buttonText: {
         fontSize: 22,
@@ -78,4 +117,5 @@ const styles = StyleSheet.create({
     heading: {
         fontSize: 30,
     }
-})
+};
+

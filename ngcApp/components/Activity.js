@@ -8,20 +8,32 @@ export default class Activity extends React.Component {
         let info = data.highlightsHtml.slice(3,data.highlightsHtml.length-4);
         console.log(data);
         return (
-            <View>
-                <Text>{data.title}</Text>
+            <View style={style.viewStyle} >
+                <Text style={style.textStyle}>{data.title}</Text>
                 <Image style={style.imgStyle} source={{ uri: data.grid4ImageUrl }}/>
-                <Text>{info}</Text>
+                <Text style={style.infoStyle}>{info}</Text>
             </View>
         );
     }
 }
 const style = {
+    viewStyle: {
+        backgroundColor: '#122f5e',
+    },
+    textStyle: {
+        color: 'white',
+    },
     imgStyle: {
-    justifyContent: 'center',
-    alignContent: 'flex-start',
-    width: 300,
-    height: 300,
-    marginTop: 30,
+        justifyContent: 'center',
+        alignContent: 'flex-start',
+        width: 300,
+        height: 300,
+        marginTop: 30,
+        marginLeft: 30,
+    },
+    infoStyle: {
+        marginTop: 15,
+        fontStyle: 'italic',
     }
+
 };

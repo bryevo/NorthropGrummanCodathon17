@@ -68,6 +68,7 @@ componentWillMount() {
         const fullProfile = this.state.info;
         const { viewStyle, textStyle, textStyle2, viewStyle2 } = styles;
         return (
+<<<<<<< Updated upstream
             <View style={viewStyle} >
                 <View style={viewStyle2}><Text style = {styles.profileTitle}>Welcome {fullProfile.username}</Text></View>
                 <Text style={textStyle2}>Email:</Text>
@@ -76,7 +77,22 @@ componentWillMount() {
                 <ListView horizontal={true} style={styles.listStyle} dataSource={this.state.dataSource}
                 renderRow={(rowData) => <Text>{rowData}</Text>}/>
                 </View>
+=======
+            <View style={style.viewStyle} >
+           <ListView horizontal={true} dataSource={this.state.dataSource}
+           renderRow={(rowData) => <Text style={textStyle}>{rowData}</Text>} />
+           <Text>{this.state.info}</Text>
+            </View>
+>>>>>>> Stashed changes
         );
     }
 }
 
+<<<<<<< Updated upstream
+=======
+const style = {
+    viewStyle: {
+        backgroundColor: '#122f5e',
+    }
+};
+>>>>>>> Stashed changes
