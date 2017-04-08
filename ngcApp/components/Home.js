@@ -98,7 +98,7 @@ class ScrollHandle extends Component {
 export default class HomeScreen extends Component {
   static navigationOptions = { 
     header: {
-      title: 'Home Screen',
+      title: 'Local Suggestions',
       style: {
         backgroundColor: '#FFF',
         shadowOpacity: 0.2,

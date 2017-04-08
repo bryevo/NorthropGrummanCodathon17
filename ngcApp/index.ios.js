@@ -30,7 +30,7 @@ const HomeTab = TabNavigator({
 // });
 
 const ngcApp = StackNavigator({
-  Home: { screen: Root },
+  Home: { screen: Root},
   Register: { screen: Register },
   Login: { screen: Login },
   Interests: { screen: InterestScreen },

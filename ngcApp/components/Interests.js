@@ -20,16 +20,18 @@ export default class UserInterests extends React.Component {
     constructor() {
         super();
         this.state = {
-            interests: ['Things', 'Food', 'Entertainment', 'Beauty', 'Travel', 'Electronics'],
+            interests: ['Things to do', 'Food', 'Entertainment', 'Beauty', 'Travel', 'Electronics'],
             interestClicked: ''
         };
     const rootref = firebase.database().ref();
-        // const firebasedb = new firebase('https://ngc-app-2017.firebaseio.com/');
     }
     interestClicked(interest) {
         console.log(interest);
         oldStr = this.state.interestClicked;
-        this.setState({ interestClicked: oldStr + ', ' + interest});
+        if (oldStr == '') {
+            this.setState({ interestClicked: interest});
+        } else 
+            this.setState({ interestClicked: oldStr + ', ' + interest});
     }
 
 
