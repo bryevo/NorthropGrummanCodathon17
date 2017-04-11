@@ -1,7 +1,6 @@
 import { AppRegistry } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import firebase from 'firebase';
-import CoolStuff from './components/CoolStuff.js';
 import ProfileScreen from './components/Profile.js';
 import HomeScreen from './components/Home.js';
 import InterestScreen from './components/Interests';
@@ -9,9 +8,10 @@ import Register from './components/Register.js';
 import Root from './components/Root';
 import Login from './components/Login.js';
 import Activity from './components/Activity';
+
 console.disableYellowBox = true;
 
-  var config = {
+  const config = {
     apiKey: "AIzaSyC_na5VWr1z6yYvttDGTZrv3QOaa4Rxd3g",
     authDomain: "ngc-app-2017.firebaseapp.com",
     databaseURL: "https://ngc-app-2017.firebaseio.com",
@@ -23,7 +23,7 @@ console.disableYellowBox = true;
 
 const HomeTab = TabNavigator({
   Home: { screen: HomeScreen },
-  // Profile: { screen: ProfileScreen },
+  Profile: { screen: ProfileScreen },
 });
 // const ngcApp = StackNavigator({
 //     Home: { screen: InterestTab },

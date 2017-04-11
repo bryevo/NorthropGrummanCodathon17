@@ -34,7 +34,8 @@ export default class UserInterests extends React.Component {
     }
 
     writeUserData(email, password, name, interestobj) {
-        firebase.database().ref().child(name).set({
+        const emailUser = email.slice(0, email.indexOf('@'));
+        firebase.database().ref().child(emailUser).set({
             username: name,
             email: email,
             password: password,
@@ -45,7 +46,12 @@ export default class UserInterests extends React.Component {
     exportInterest() {
         const fullInfo = this.props.navigation.state.params.profInfo;
         this.writeUserData(fullInfo.email, fullInfo.password, fullInfo.name, this.state.interestClicked);
-        this.props.navigation.navigate('Dashboard', { clickedInterests: this.state.interestClicked });
+        this.props.navigation.navigate('Dashboard', { 
+            data: { 
+                info: fullInfo.email.slice(0, fullInfo.email.indexOf('@')), 
+                interests: this.state.interestClicked 
+            } 
+        });
     }
     render() {
         console.log('Our final this.state');

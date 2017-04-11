@@ -44,38 +44,43 @@ export default class ProfileScreen extends React.Component {
             }
         }
     };
-     constructor(props) {
-    super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}); 
-    this.state = {
-        dataSource: ds.cloneWithRows(['']),
-        info: '',
-    };
-  }  
+    constructor(props) {
+        super(props);
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }); 
+        this.state = {
+            dataSource: ds.cloneWithRows(['']),
+            email: '',
+            fullName: '',
+        };
+    }  
 componentWillMount() {
-        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}); 
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }); 
 /* reference to our database*/
+        const props = this.props.navigation.state.params.data;
     const rootRef = firebase.database().ref();
     /* assigns the a reference to one of the children(branch) of the database*/
         rootRef.on('value', snap => {
         this.setState({
-            info: snap.child('Claris').val(),
-            dataSource: ds.cloneWithRows(snap.child('Claris').child('interest').val()),
+            email: snap.child(props.info).child('email').val(),
+            fullName: snap.child(props.info).child('username').val(),
+            dataSource: ds.cloneWithRows(snap.child(props.info).child('interest').val()),
         });
     });
 }
     render() {
-        const fullProfile = this.state.info;
+        const fullProfile = this.state;
         const { viewStyle, textStyle, textStyle2, viewStyle2 } = styles;
         return (
 
             <View style={viewStyle} >
-                <View style={viewStyle2}><Text style = {styles.profileTitle}>Welcome {fullProfile.username}</Text></View>
+                <View style={viewStyle2}><Text style={styles.profileTitle}>Welcome {fullProfile.fullName}</Text></View>
                 <Text style={textStyle2}>Email:</Text>
                 <Text style={styles.textStyle}>{fullProfile.email}</Text>
                 <Text style={styles.textStyle2}>Things that you have interests in: </Text>
-                <ListView horizontal={true} style={styles.listStyle} dataSource={this.state.dataSource}
-                renderRow={(rowData) => <Text>{rowData}</Text>}/>
+                <ListView 
+                    style={styles.listStyle} dataSource={this.state.dataSource}
+                    renderRow={(rowData) => <Text>{rowData}</Text>} 
+                />
                 </View>
         );
     }

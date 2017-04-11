@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { View, ListView, Text, TouchableHighlight, Image, ScrollView } from 'react-native';
+import Profile from './Profile.js';
 import gpnFood from '../groupon/groupon_food.json';
 import gpnEnt from '../groupon/groupon_music.json';
 import gpnSports from '../groupon/groupon_sports.json';
 import gpnTodo from '../groupon/groupon_todo.json';
 import gpnBeauty from '../groupon/groupon_beauty.json';
-
-// import ListViewer from './ListView.js';
 
 const style = {
   titleStyle: {
@@ -113,7 +112,14 @@ export default class HomeScreen extends Component {
       }
     }
   };
-  render() {  
+  constructor(props) {
+    super(props);
+    this.props = {
+      screenProps: this.props.navigation
+    };
+  }
+  render() {
+    console.log(this.props);  
     return (
       <View style={style.viewStyle}>
         <ScrollHandle navigation={this.props.navigation} />
