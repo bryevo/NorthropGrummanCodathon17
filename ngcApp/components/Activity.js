@@ -17,11 +17,9 @@ export default class Activity extends React.Component {
     }
 }
 const style = {
-    viewStyle: {
-        backgroundColor: '#122f5e',
-    },
+
     textStyle: {
-        color: 'white',
+        color: 'black',
     },
     imgStyle: {
         justifyContent: 'center',
@@ -34,6 +32,7 @@ const style = {
     infoStyle: {
         marginTop: 15,
         fontStyle: 'italic',
+        color: 'black'
     }
 
 };

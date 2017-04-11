@@ -9,6 +9,7 @@ import Register from './components/Register.js';
 import Root from './components/Root';
 import Login from './components/Login.js';
 import Activity from './components/Activity';
+console.disableYellowBox = true;
 
   var config = {
     apiKey: "AIzaSyC_na5VWr1z6yYvttDGTZrv3QOaa4Rxd3g",
@@ -22,7 +23,7 @@ import Activity from './components/Activity';
 
 const HomeTab = TabNavigator({
   Home: { screen: HomeScreen },
-  Profile: { screen: ProfileScreen },
+  // Profile: { screen: ProfileScreen },
 });
 // const ngcApp = StackNavigator({
 //     Home: { screen: InterestTab },
@@ -30,7 +31,7 @@ const HomeTab = TabNavigator({
 // });
 
 const ngcApp = StackNavigator({
-  Home: { screen: Root},
+  Home: { screen: Root },
   Register: { screen: Register },
   Login: { screen: Login },
   Interests: { screen: InterestScreen },

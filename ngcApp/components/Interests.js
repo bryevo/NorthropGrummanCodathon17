@@ -4,74 +4,60 @@ import CheckBox from 'react-native-checkbox';
 import firebase from 'firebase';
 
 class InterestBox extends React.Component {
-       checkInterest() {
-           this.props.exportFunction(this.props.interest);
-       }
-       render() {
-        return (
-            <View>
-            <Text>{this.props.interest}</Text>
-                <CheckBox onChange={() => this.checkInterest()} />
-            </View>
-        );
-       }
-} 
+    checkInterest(checked, likes) {
+            return this.props.exportFunction(checked, likes);
+        }
+        render() {
+            const value = this.props.interests;
+            return (<CheckBox label={value} onChange={(checked) => this.checkInterest(checked, value)} />);
+        }
+}
+
 export default class UserInterests extends React.Component {
     constructor() {
         super();
         this.state = {
-            interests: ['Things to do', 'Food', 'Entertainment', 'Beauty', 'Travel', 'Electronics'],
-            interestClicked: ''
+            interests: ['Things to do', 'Food', 'Entertainment', 'Sports', 'Travel', 'Electronics'],
+            interestClicked: []
         };
-    const rootref = firebase.database().ref();
     }
-    interestClicked(interest) {
-        console.log(interest);
-        oldStr = this.state.interestClicked;
-        if (oldStr == '') {
-            this.setState({ interestClicked: interest});
-        } else 
-            this.setState({ interestClicked: oldStr + ', ' + interest});
+    interestClicked(check, interest) {
+        const likeArray = this.state.interestClicked.slice();
+        if (!check) {
+            likeArray.push(interest);   
+            this.setState({ interestClicked: likeArray });
+        } else {
+            const index = likeArray.indexOf(interest);
+            likeArray.splice(index, 1);
+            this.setState({ interestClicked: likeArray });
+        }
     }
-
 
     writeUserData(email, password, name, interestobj) {
-    // const childref = rootref.child.ref
-    firebase.database().ref().child(name).set({
-        username: name,
-        email: email,
-        password: password,
-        interest: interestobj
-    });
+        firebase.database().ref().child(name).set({
+            username: name,
+            email: email,
+            password: password,
+            interest: interestobj
+        });
     }
 
     exportInterest() {
         const fullInfo = this.props.navigation.state.params.profInfo;
-        console.log('This is this.props');
-        console.log(this.props);
         this.writeUserData(fullInfo.email, fullInfo.password, fullInfo.name, this.state.interestClicked);
         this.props.navigation.navigate('Dashboard', { clickedInterests: this.state.interestClicked });
     }
     render() {
-        console.log('This is this.props.navigation');
-        console.log(this.props.navigation);
+        console.log('Our final this.state');
+        console.log(this.state);
         return (
-            <View style={style.viewStyle} navigation={this.props.navigation} >
+            <View navigation={this.props.navigation} >
                 <Text> What are you looking to do?</Text>
-                <InterestBox label={this.state.interests[0]} interest={this.state.interests[0]} exportFunction={(data) => this.interestClicked(data)} />
-                <InterestBox label={this.state.interests[1]}interest={this.state.interests[1]} exportFunction={(data) => this.interestClicked(data)} />
-                <InterestBox label={this.state.interests[2]}interest={this.state.interests[2]} exportFunction={(data) => this.interestClicked(data)} />
-                <InterestBox label={this.state.interests[3]}interest={this.state.interests[3]} exportFunction={(data) => this.interestClicked(data)} />
-                <InterestBox label={this.state.interests[4]}interest={this.state.interests[4]} exportFunction={(data) => this.interestClicked(data)} />
-                <InterestBox label={this.state.interests[5]}interest={this.state.interests[5]} exportFunction={(data) => this.interestClicked(data)} />
+                {this.state.interests.map(likes => <InterestBox interests={likes} exportFunction={(check, data) => this.interestClicked(check, data)} />)}
                 <Button title="Continue" onPress={() => this.exportInterest()} />
             </View>
         );
     }
 }
-const style = {
-    viewStyle: {
-        backgroundColor: 'black',
-    }
-};
+
 

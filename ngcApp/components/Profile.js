@@ -59,8 +59,8 @@ componentWillMount() {
     /* assigns the a reference to one of the children(branch) of the database*/
         rootRef.on('value', snap => {
         this.setState({
-            info: snap.child('Mike Yao').val(),
-            dataSource: ds.cloneWithRows(snap.child('Mike Yao').child('interest').val()),
+            info: snap.child('Claris').val(),
+            dataSource: ds.cloneWithRows(snap.child('Claris').child('interest').val()),
         });
     });
 }
@@ -68,7 +68,7 @@ componentWillMount() {
         const fullProfile = this.state.info;
         const { viewStyle, textStyle, textStyle2, viewStyle2 } = styles;
         return (
-<<<<<<< Updated upstream
+
             <View style={viewStyle} >
                 <View style={viewStyle2}><Text style = {styles.profileTitle}>Welcome {fullProfile.username}</Text></View>
                 <Text style={textStyle2}>Email:</Text>
@@ -77,22 +77,7 @@ componentWillMount() {
                 <ListView horizontal={true} style={styles.listStyle} dataSource={this.state.dataSource}
                 renderRow={(rowData) => <Text>{rowData}</Text>}/>
                 </View>
-=======
-            <View style={style.viewStyle} >
-           <ListView horizontal={true} dataSource={this.state.dataSource}
-           renderRow={(rowData) => <Text style={textStyle}>{rowData}</Text>} />
-           <Text>{this.state.info}</Text>
-            </View>
->>>>>>> Stashed changes
         );
     }
 }
 
-<<<<<<< Updated upstream
-=======
-const style = {
-    viewStyle: {
-        backgroundColor: '#122f5e',
-    }
-};
->>>>>>> Stashed changes

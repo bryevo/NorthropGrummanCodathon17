@@ -16,7 +16,7 @@ moveLogin(){
         <Image source={require('../assets/bg_splash.png')} style = {styles.backgroundImage}>
       <View style={styles.container}>
       
-        <Text style={styles.title}>San Diego Activities </Text>
+        <Text style={styles.title}> Szechuan Socials </Text>
         <TouchableHighlight navigate = {this.props.navigation} onPress={() => this.moveRegister()}  style={styles.button}>
           <Text style={styles.buttonText}>Register</Text>
         </TouchableHighlight>
